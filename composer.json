@@ -1,19 +1,37 @@
 {
-    "name": "vadiktok/rabbitmq-elastica-bundle",
-    "require": {
-        "php": "^7.1",
-        "friendsofsymfony/elastica-bundle": "^5.0",
-        "php-amqplib/rabbitmq-bundle": "^1.11"
-    },
+    "name": "cosmow/rabbitmq-elastica-bundle",
+    "description": "Cosmomedia's fork of Vadiktok's RabbitMQ Elastica Bundle.",
+    "type": "library",
+    "license": "MIT",
     "authors": [
         {
-            "name": "Vadik Tokarchuk",
-            "email": "vadiktok@gmail.com"
+            "name": "Milayton Pereira",
+            "email": "milayton.pereira@cosmomedia.es"
         }
     ],
+    "require": {
+        "php": "^7.1",
+        "friendsofsymfony/elastica-bundle": "^6.3",
+        "php-amqplib/rabbitmq-bundle": "^1.11"
+    },
     "autoload": {
         "psr-4": {
-            "Vadiktok\\RabbitMQElasticaBundle\\": "src/RabbitMQElasticaBundle"
+            "Cosmow\\RabbitMQElasticaBundle\\": "src/RabbitMQElasticaBundle"
         }
-    }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cosmow\\RabbitMQElasticaBundle\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
