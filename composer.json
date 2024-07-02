@@ -1,7 +1,7 @@
 {
     "name": "cosmow/rabbitmq-elastica-bundle",
     "description": "Cosmomedia's fork of Vadiktok's RabbitMQ Elastica Bundle.",
-    "type": "symfony-bundle",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
