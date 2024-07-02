@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Cosmow\\RabbitMQElasticaBundle\\": "src/"
+            "Cosmow\\RabbitMQElasticaBundle\\": "src/RabbitMQElasticaBundle"
         }
     },
     "autoload-dev": {
