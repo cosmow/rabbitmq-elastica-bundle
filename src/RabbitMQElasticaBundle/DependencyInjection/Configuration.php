@@ -17,8 +17,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('vadiktok_elastica');
+        $treeBuilder = new TreeBuilder('vadiktok_elastica');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
