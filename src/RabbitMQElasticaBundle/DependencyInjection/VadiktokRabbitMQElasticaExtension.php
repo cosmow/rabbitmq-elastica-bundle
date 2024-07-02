@@ -36,7 +36,7 @@ class VadiktokRabbitMQElasticaExtension extends Extension
     /**
      * @return string
      */
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'vadiktok_rabbit_mq_elastica';
     }
