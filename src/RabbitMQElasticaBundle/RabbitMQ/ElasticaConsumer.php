@@ -2,7 +2,6 @@
 
 namespace Vadiktok\RabbitMQElasticaBundle\RabbitMQ;
 
-use FOS\ElasticaBundle\Persister\Event\Events;
 use FOS\ElasticaBundle\Persister\Event\OnExceptionEvent;
 use FOS\ElasticaBundle\Persister\Event\PostInsertObjectsEvent;
 use FOS\ElasticaBundle\Persister\Event\PreFetchObjectsEvent;
@@ -61,7 +60,7 @@ class ElasticaConsumer implements ConsumerInterface
         $pager->setMaxPerPage($options['max_per_page']);
 
         $event = new PreFetchObjectsEvent($pager, $objectPersister, $options);
-        $this->dispatcher->dispatch(Events::PRE_FETCH_OBJECTS, $event);
+        $this->dispatcher->dispatch($event, PreFetchObjectsEvent::class);
         $pager = $event->getPager();
         $options = $event->getOptions();
 
@@ -74,7 +73,7 @@ class ElasticaConsumer implements ConsumerInterface
         $objects = array_slice($objects, 0, $count);
 
         $event = new PreInsertObjectsEvent($pager, $objectPersister, $objects, $options);
-        $this->dispatcher->dispatch(Events::PRE_INSERT_OBJECTS, $event);
+        $this->dispatcher->dispatch($event, PreInsertObjectsEvent::class);
         $pager = $event->getPager();
         $options = $event->getOptions();
         $objects = $event->getObjects();
@@ -85,14 +84,14 @@ class ElasticaConsumer implements ConsumerInterface
             }
 
             $event = new PostInsertObjectsEvent($pager, $objectPersister, $objects, $options);
-            $this->dispatcher->dispatch(Events::POST_INSERT_OBJECTS, $event);
+            $this->dispatcher->dispatch($event, PostInsertObjectsEvent::class);
         } catch (\Exception $e) {
             $event = new OnExceptionEvent($pager, $objectPersister, $e, $objects, $options);
-            $this->dispatcher->dispatch(Events::ON_EXCEPTION, $event);
+            $this->dispatcher->dispatch($event, OnExceptionEvent::class);
 
             if ($event->isIgnored()) {
                 $event = new PostInsertObjectsEvent($pager, $objectPersister, $objects, $options);
-                $this->dispatcher->dispatch(Events::POST_INSERT_OBJECTS, $event);
+                $this->dispatcher->dispatch($event, PostInsertObjectsEvent::class);
                 return self::MSG_REJECT;
             }
             return self::MSG_REJECT_REQUEUE;
